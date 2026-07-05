@@ -7,5 +7,6 @@ export default class {
 
   placeShip(ship) {
     this.ship = ship;
+    this.isEmpty = false;
   }
 }
