@@ -24,4 +24,9 @@ class Gameboard {
   placeShip(x, y, ship) {
     this.getBlock(x, y).placeShip(ship);
   }
+
+  receiveAttack(x, y) {
+    const block = this.getBlock(x, y);
+    block.isEmpty ? (block.missed = true) : block.ship.hit();
+  }
 }
