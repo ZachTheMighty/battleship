@@ -36,12 +36,15 @@ export default class {
 
   createGrid() {
     const grid = document.createElement("div");
-    for (let i = 0; i < 10; i++)
-      for (let j = 0; j < 10; j++) {
+    this.alphabet.forEach((char) => {
+      for (let i = 1; i < 11; i++) {
         const block = document.createElement("div");
         block.classList.add("block");
+        block.classList.add(char);
+        block.classList.add(i);
         grid.append(block);
       }
+    });
     return grid;
   }
 }
