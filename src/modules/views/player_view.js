@@ -53,6 +53,10 @@ export default class {
         block.classList.contains(blockObject.x) &&
         block.classList.contains(blockObject.y),
     );
+    if (!blockObject.shipsAllowed) {
+      blockDiv.classList.add("no-ships");
+      return;
+    }
     blockDiv.classList.add("filled-block");
   }
 }

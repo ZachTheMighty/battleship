@@ -3,16 +3,16 @@ import Block from "./block.js";
 export default class {
   #ships = [];
   constructor() {
+    this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     this.grid = this.generateGrid();
     this.filledBlocks = [];
     this.missedAttacks = [];
   }
 
   generateGrid() {
-    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     let grid = [];
 
-    alphabet.forEach((char) => {
+    this.alphabet.forEach((char) => {
       for (let i = 1; i < 11; i++) grid.push(new Block(char, i));
     });
     return grid;
@@ -25,9 +25,28 @@ export default class {
 
   placeShip(x, y, ship) {
     const block = this.getBlock(x, y);
-    this.#ships.push(ship);
     block.placeShip(ship);
+    this.createGaps(x, y, block);
+
+    this.#ships.push(ship);
     this.filledBlocks.push(block);
+  }
+
+  createGaps(x, y, block) {
+    const noShipsBlocks = [
+      this.getBlock(x, y + 1),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) + 1], y + 1),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) - 1], y + 1),
+      this.getBlock(x, y - 1),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) + 1], y - 1),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) - 1], y - 1),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) + 1], y),
+      this.getBlock(this.alphabet[this.alphabet.indexOf(x) - 1], y),
+    ];
+    noShipsBlocks.forEach((noShipBlock) => {
+      noShipBlock.shipsAllowed = false;
+      block.grayBlocks.push(noShipBlock);
+    });
   }
 
   receiveAttack(x, y) {

@@ -3,6 +3,8 @@ export default class {
     this.x = x;
     this.y = y;
     this.isEmpty = true;
+    this.shipsAllowed = true;
+    this.grayBlocks = [];
   }
 
   placeShip(ship) {

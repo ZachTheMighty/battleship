@@ -9,11 +9,16 @@ class Controller {
     this.view = view;
 
     const gameboard = this.model.player.gameboard;
-    gameboard.placeShip("A", 1, new Ship(5));
-    gameboard.placeShip("J", 9, new Ship(5));
+    // gameboard.placeShip("A", 1, new Ship(5));
+    gameboard.placeShip("E", 6, new Ship(5));
+    // gameboard.placeShip("B", 7, new Ship(2));
+    // gameboard.placeShip("J", 9, new Ship(3));
 
     const filledBlocks = gameboard.filledBlocks;
-    filledBlocks.forEach((block) => this.view.render(block));
+    filledBlocks.forEach((block) => {
+      this.view.render(block);
+      block.grayBlocks.forEach((block) => this.view.render(block));
+    });
   }
 }
 
