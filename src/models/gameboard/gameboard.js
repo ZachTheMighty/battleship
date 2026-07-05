@@ -16,9 +16,11 @@ class Gameboard {
     return grid;
   }
 
+  getBlock(x, y) {
+    return this.grid.find((block) => block.x === x && block.y === y);
+  }
+
   placeShip(x, y, ship) {
-    return this.grid
-      .find((block) => block.x === x && block.y === y)
-      .placeShip(ship);
+    this.getBlock(x, y).placeShip(ship);
   }
 }
