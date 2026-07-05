@@ -4,6 +4,7 @@ import Ship from "../ship/ship.js";
 class Gameboard {
   constructor() {
     this.grid = this.generateGrid();
+    this.ships = [];
     this.missedAttacks = [];
   }
 
@@ -23,6 +24,7 @@ class Gameboard {
   }
 
   placeShip(x, y, ship) {
+    this.ships.push(ship);
     this.getBlock(x, y).placeShip(ship);
   }
 
