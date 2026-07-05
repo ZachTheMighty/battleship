@@ -49,7 +49,7 @@ export default class {
   }
 
   render(blockObject) {
-    const blockDiv = this.grid.find(
+    const blockDiv = Array.from(this.grid.childNodes).find(
       (block) =>
         block.classList.contains(blockObject.x) &&
         block.classList.contains(blockObject.y),
