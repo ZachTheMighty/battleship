@@ -1,9 +1,9 @@
 import Block from "./block.js";
 
 export default class {
+  #ships = [];
   constructor() {
     this.grid = this.generateGrid();
-    this.ships = [];
     this.missedAttacks = [];
   }
 
@@ -23,7 +23,7 @@ export default class {
   }
 
   placeShip(x, y, ship) {
-    this.ships.push(ship);
+    this.#ships.push(ship);
     this.getBlock(x, y).placeShip(ship);
   }
 
@@ -33,6 +33,6 @@ export default class {
   }
 
   isAllSunk() {
-    return this.ships.some((ship) => !ship.isSunk) ? false : true;
+    return this.#ships.some((ship) => !ship.isSunk) ? false : true;
   }
 }
