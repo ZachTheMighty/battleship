@@ -14,12 +14,23 @@ export default class {
       this.alphabetDiv.append(charDiv);
     });
 
-    this.app.append(this.alphabetDiv);
+    this.numsDiv = document.createElement("div");
+    this.numsDiv.classList.add("numbers");
+    for (let i = 1; i < 11; i++) {
+      const numDiv = document.createElement("div");
+      numDiv.classList.add("y-coordinates");
+      numDiv.textContent = i;
+      this.numsDiv.append(numDiv);
+    }
 
     this.grid = this.createGrid();
     this.grid.classList.add("player-grid");
 
-    this.app.append(this.grid);
+    this.wrapper = document.createElement("div");
+    this.wrapper.classList.add("wrapper");
+    this.wrapper.append(this.numsDiv, this.grid);
+
+    this.app.append(this.alphabetDiv, this.wrapper);
     document.body.append(this.app);
   }
 

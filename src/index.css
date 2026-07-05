@@ -33,7 +33,12 @@ body {
   display: flex;
   text-align: center;
   margin-bottom: 8px;
+  margin-left: 24px;
   font-size: 0.9rem;
+}
+
+.wrapper {
+  display: flex;
 }
 
 .x-coordinates {
@@ -44,4 +49,16 @@ body {
   width: 35px;
   height: 35px;
   outline: 1px solid black;
+}
+
+.numbers {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: 8px;
+}
+
+.y-coordinates {
+  flex: 1;
 }
