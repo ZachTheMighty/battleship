@@ -29,6 +29,17 @@ body {
   gap: 1px;
 }
 
+.alphabet {
+  display: flex;
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.x-coordinates {
+  flex: 1;
+}
+
 .block {
   width: 35px;
   height: 35px;

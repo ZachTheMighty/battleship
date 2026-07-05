@@ -3,6 +3,19 @@ export default class {
     this.app = document.createElement("div");
     this.app.classList.add("player");
 
+    this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
+    this.alphabetDiv = document.createElement("div");
+    this.alphabetDiv.classList.add("alphabet");
+    this.alphabet.forEach((char) => {
+      const charDiv = document.createElement("div");
+      charDiv.classList.add("x-coordinates");
+      charDiv.textContent = char;
+      this.alphabetDiv.append(charDiv);
+    });
+
+    this.app.append(this.alphabetDiv);
+
     this.grid = this.createGrid();
     this.grid.classList.add("player-grid");
 
