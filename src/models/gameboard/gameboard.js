@@ -4,6 +4,7 @@ import Ship from "../ship/ship.js";
 class Gameboard {
   constructor() {
     this.grid = this.generateGrid();
+    this.missedAttacks = [];
   }
 
   generateGrid() {
@@ -27,6 +28,6 @@ class Gameboard {
 
   receiveAttack(x, y) {
     const block = this.getBlock(x, y);
-    block.isEmpty ? (block.missed = true) : block.ship.hit();
+    block.isEmpty ? this.missedAttacks.push(block) : block.ship.hit();
   }
 }
