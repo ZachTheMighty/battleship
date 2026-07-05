@@ -32,4 +32,8 @@ class Gameboard {
     const block = this.getBlock(x, y);
     block.isEmpty ? this.missedAttacks.push(block) : block.ship.hit();
   }
+
+  isAllSunk() {
+    return this.ships.some((ship) => !ship.isSunk) ? false : true;
+  }
 }
