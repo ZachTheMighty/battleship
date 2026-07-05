@@ -1,7 +1,6 @@
 import Block from "./block.js";
-import Ship from "../ship/ship.js";
 
-class Gameboard {
+export default class {
   constructor() {
     this.grid = this.generateGrid();
     this.ships = [];
