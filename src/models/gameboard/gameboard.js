@@ -17,7 +17,8 @@ class Gameboard {
   }
 
   getBlock(x, y) {
-    return this.grid.find((block) => block.x === x && block.y === y);
+    const block = this.grid.find((block) => block.x === x && block.y === y);
+    return block ? block : "Invalid coordinates";
   }
 
   placeShip(x, y, ship) {
