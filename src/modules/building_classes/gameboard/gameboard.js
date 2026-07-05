@@ -4,6 +4,7 @@ export default class {
   #ships = [];
   constructor() {
     this.grid = this.generateGrid();
+    this.filledBlocks = [];
     this.missedAttacks = [];
   }
 
@@ -23,8 +24,10 @@ export default class {
   }
 
   placeShip(x, y, ship) {
+    const block = this.getBlock(x, y);
     this.#ships.push(ship);
-    this.getBlock(x, y).placeShip(ship);
+    block.placeShip(ship);
+    this.filledBlocks.push(block);
   }
 
   receiveAttack(x, y) {
