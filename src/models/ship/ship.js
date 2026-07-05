@@ -4,6 +4,10 @@ class Ship {
     this.timesHit = 0;
   }
 
+  hit() {
+    this.timesHit++;
+  }
+
   isSunk() {
     return this.length === this.timesHit ? true : false;
   }
