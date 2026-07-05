@@ -51,6 +51,10 @@ body {
   outline: 1px solid black;
 }
 
+.filled-block {
+  outline: 2px solid blue;
+}
+
 .numbers {
   display: flex;
   flex-flow: column nowrap;

@@ -47,4 +47,13 @@ export default class {
     });
     return grid;
   }
+
+  render(blockObject) {
+    const blockDiv = this.grid.find(
+      (block) =>
+        block.classList.contains(blockObject.x) &&
+        block.classList.contains(blockObject.y),
+    );
+    blockDiv.classList.add("filled-block");
+  }
 }
