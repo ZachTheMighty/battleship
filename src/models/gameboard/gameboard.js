@@ -1,3 +1,5 @@
+import Block from "./block.js";
+
 class Gameboard {
   constructor() {
     this.grid = this.generateGrid();
@@ -8,7 +10,7 @@ class Gameboard {
     let grid = [];
 
     alphabet.forEach((char) => {
-      for (let i = 1; i < 11; i++) grid.push({ x: char, y: i });
+      for (let i = 1; i < 11; i++) grid.push(new Block(char, i));
     });
     return grid;
   }
