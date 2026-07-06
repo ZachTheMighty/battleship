@@ -60,23 +60,26 @@ export default class {
     for (let i = 0; i < ship.length; i++) {
       if (
         x_coordinates === 0 && this.noShipInTheWay(x_coordinates, y, ship, "right")
-      ) {
-        const block = this.getBlock(this.alphabet[x_coordinates + i], y);
-        block.isEmpty = false;
-        this.filledBlocks.push(block);
+      )
+        this.spanShip(x_coordinates + i, y)
 
-      } else if (
+      else if (
         x_coordinates === this.alphabet.length - 1 &&
       this.noShipInTheWay(x_coordinates, y, ship, "left")
-      ) {
-        const block = this.getBlock(this.alphabet[x_coordinates - i], y);
-        block.isEmpty = false;
-        this.filledBlocks.push(block);
-      }
+      )
+        this.spanShip(x_coordinates - i, y);
+
     }
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
+  }
+
+  spanShip(x, y)
+  {
+    const block = this.getBlock(this.alphabet[x], y);
+    block.isEmpty = false;
+    this.filledBlocks.push(block)
   }
 
   noShipInTheWay(x, y, ship, direction)
