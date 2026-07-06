@@ -30,7 +30,16 @@ export default class {
     this.wrapper.classList.add("wrapper");
     this.wrapper.append(this.numsDiv, this.grid);
 
-    this.app.append(this.alphabetDiv, this.wrapper);
+    this.randomizeDiv = document.createElement("div");
+    this.randomizeDiv.classList.add("randomize-div");
+
+    this.randomizeButton = document.createElement("button");
+    this.randomizeButton.classList.add("randomize-button");
+    this.randomizeButton.textContent = "Randomize";
+
+    this.randomizeDiv.append(this.randomizeButton);
+
+    this.app.append(this.alphabetDiv, this.wrapper, this.randomizeDiv);
     document.body.append(this.app);
   }
 
