@@ -27,6 +27,12 @@ export default class {
     if (!this.getBlock(x, y).isEmpty || !this.getBlock(x, y).shipsAllowed)
       return false;
 
+    if(ship.length === 1)
+    {
+      this.spanShip(this.alphabet.indexOf(x), y);
+      this.createGaps(x, y, this.getBlock(x, y))
+    }
+
     const block = this.getBlock(x, y);
     block.placeShip(ship);
 
