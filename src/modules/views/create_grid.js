@@ -1,7 +1,6 @@
 export default function (gridClass) {
   const grid = document.createElement("div");
   const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-
   for (let i = 1; i < 11; i++)
     alphabet.forEach((char) => {
       const block = document.createElement("div");

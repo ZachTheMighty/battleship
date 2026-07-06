@@ -1,2 +1,2 @@
 import "./index.css";
-import controller from "./modules/controller.js";
+import init from "./modules/controllers/bot_controller.js";

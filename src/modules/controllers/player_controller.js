@@ -1,7 +1,7 @@
-import PlayerModel from "./models/player_model.js";
-import PlayerView from "./views/player_view.js";
+import PlayerModel from "../models/player_model.js";
+import PlayerView from "../views/player_view.js";
 
-class Controller {
+class PlayerController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
@@ -32,4 +32,4 @@ class Controller {
   }
 }
 
-export default new Controller(new PlayerModel("idk"), new PlayerView());
+export default new PlayerController(new PlayerModel("idk"), new PlayerView());
