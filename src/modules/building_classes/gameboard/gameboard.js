@@ -28,7 +28,6 @@ export default class {
     block.placeShip(ship);
 
     this.#ships.push(ship);
-    this.filledBlocks.push(block);
     this.placeHorizontally(x, y, ship);
   }
 
@@ -61,6 +60,7 @@ export default class {
       if (
         x_coordinates === 0 &&
         this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y)
+          .shipsAllowed
       ) {
         const block = this.getBlock(this.alphabet[x_coordinates + i], y);
         block.isEmpty = false;
@@ -68,7 +68,8 @@ export default class {
       } else if (
         x_coordinates === this.alphabet.length - 1 &&
         this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y)
-          .shipsAllowed
+          .shipsAllowed &&
+        this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y).isEmpty
       ) {
         const block = this.getBlock(this.alphabet[x_coordinates - i], y);
         block.isEmpty = false;
