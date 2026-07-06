@@ -29,6 +29,7 @@ export default class {
 
     this.#ships.push(ship);
     this.placeHorizontally(x, y, ship);
+
   }
 
   createGaps(x, y, block) {
@@ -58,19 +59,15 @@ export default class {
     const x_coordinates = this.alphabet.indexOf(x);
     for (let i = 0; i < ship.length; i++) {
       if (
-        x_coordinates === 0 &&
-        this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y)
-          .shipsAllowed &&
-        this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y).isEmpty
+        x_coordinates === 0 && this.noShipInTheWay(x_coordinates, y, ship, "right")
       ) {
         const block = this.getBlock(this.alphabet[x_coordinates + i], y);
         block.isEmpty = false;
         this.filledBlocks.push(block);
+
       } else if (
         x_coordinates === this.alphabet.length - 1 &&
-        this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y)
-          .shipsAllowed &&
-        this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y).isEmpty
+      this.noShipInTheWay(x_coordinates, y, ship, "left")
       ) {
         const block = this.getBlock(this.alphabet[x_coordinates - i], y);
         block.isEmpty = false;
@@ -80,6 +77,19 @@ export default class {
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
+  }
+
+  noShipInTheWay(x, y, ship, direction)
+  {
+    let targetBlock;
+
+    if(direction === "right")
+    targetBlock = this.getBlock(this.alphabet[x + ship.length - 1], y);
+
+    else
+    targetBlock = this.getBlock(this.alphabet[x - ship.length + 1], y);
+
+    return targetBlock.shipsAllowed && targetBlock.isEmpty;
   }
 
   receiveAttack(x, y) {
