@@ -26,10 +26,10 @@ export default class {
   placeShip(x, y, ship) {
     const block = this.getBlock(x, y);
     block.placeShip(ship);
-    this.createGaps(x, y, block);
 
     this.#ships.push(ship);
     this.filledBlocks.push(block);
+    this.placeHorizontally(x, y, ship);
   }
 
   createGaps(x, y, block) {
@@ -46,12 +46,38 @@ export default class {
 
     for (let i = 0; i < noShipsBlocks.length; i++) {
       try {
+        if (!noShipsBlocks[i].isEmpty) continue;
         noShipsBlocks[i].shipsAllowed = false;
         block.grayBlocks.push(noShipsBlocks[i]);
       } catch (error) {
         continue;
       }
     }
+  }
+
+  placeHorizontally(x, y, ship) {
+    const x_coordinates = this.alphabet.indexOf(x);
+    for (let i = 0; i < ship.length; i++) {
+      if (
+        x_coordinates === 0 &&
+        this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y)
+      ) {
+        const block = this.getBlock(this.alphabet[x_coordinates + i], y);
+        block.isEmpty = false;
+        this.filledBlocks.push(block);
+      } else if (
+        x_coordinates === this.alphabet.length - 1 &&
+        this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y)
+          .shipsAllowed
+      ) {
+        const block = this.getBlock(this.alphabet[x_coordinates - i], y);
+        block.isEmpty = false;
+        this.filledBlocks.push(block);
+      }
+    }
+    this.filledBlocks
+      .filter((block) => block.grayBlocks.length === 0)
+      .forEach((block) => this.createGaps(block.x, block.y, block));
   }
 
   receiveAttack(x, y) {
