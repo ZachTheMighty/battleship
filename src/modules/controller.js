@@ -8,10 +8,9 @@ class Controller {
     this.model = model;
     this.view = view;
 
-    const gameboard = this.model.player.gameboard;
+    this.gameboard = this.model.player.gameboard;
 
-    const filledBlocks = gameboard.filledBlocks;
-    filledBlocks.forEach((block) => {
+    this.gameboard.filledBlocks.forEach((block) => {
       this.view.render(block);
       block.grayBlocks.forEach((block) => this.view.render(block));
     });
