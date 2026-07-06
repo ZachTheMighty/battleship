@@ -24,12 +24,16 @@ export default class {
   }
 
   placeShip(x, y, ship) {
-    const randomNumber = Math.floor(Math.random() * 2);
+    if(!this.getBlock(x, y).isEmpty ||
+      !this.getBlock(x, y).shipsAllowed
+    ) return;
+
     const block = this.getBlock(x, y);
     block.placeShip(ship);
 
     this.#ships.push(ship);
-    this.placeVertically(x, y, ship, randomNumber);
+
+    this.placeVertically(x, y, ship);
   }
 
   createGaps(x, y, block) {
@@ -55,7 +59,8 @@ export default class {
     }
   }
 
-  placeHorizontally(x, y, ship, randomNumber) {
+  placeHorizontally(x, y, ship) {
+    const randomNumber = Math.floor(Math.random() * 2);
     const x_coordinates = this.alphabet.indexOf(x);
     for (let i = 0; i < ship.length; i++) {
       if (
