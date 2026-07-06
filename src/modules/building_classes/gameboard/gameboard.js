@@ -29,7 +29,6 @@ export default class {
 
     this.#ships.push(ship);
     this.placeHorizontally(x, y, ship);
-
   }
 
   createGaps(x, y, block) {
@@ -56,6 +55,7 @@ export default class {
   }
 
   placeHorizontally(x, y, ship) {
+    const randomNumber = Math.floor(Math.random() * 2);
     const x_coordinates = this.alphabet.indexOf(x);
     for (let i = 0; i < ship.length; i++) {
       if (
@@ -63,12 +63,26 @@ export default class {
       )
         this.spanShip(x_coordinates + i, y)
 
-      else if (
+       else if (
         x_coordinates === this.alphabet.length - 1 &&
       this.noShipInTheWay(x_coordinates, y, ship, "left")
       )
         this.spanShip(x_coordinates - i, y);
-
+      else {
+        if(x_coordinates + ship.length <= this.alphabet.length && this.noShipInTheWay(x_coordinates, y, ship, "right"))
+        {
+          if(this.noShipInTheWay(x_coordinates, y, ship, "left"))
+          {
+            randomNumber === 1 ? this.spanShip(x_coordinates + i, y) :
+            this.spanShip(x_coordinates - i, y);
+            continue;
+          }
+          this.spanShip(x_coordinates + i, y)
+        }
+        else if(this.noShipInTheWay(x_coordinates, y, ship, "left"))
+            this.spanShip(x_coordinates - i, y);
+        else return false;
+      }
     }
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)

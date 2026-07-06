@@ -10,7 +10,6 @@ class Controller {
 
     const gameboard = this.model.player.gameboard;
 
-
     const filledBlocks = gameboard.filledBlocks;
     filledBlocks.forEach((block) => {
       this.view.render(block);
