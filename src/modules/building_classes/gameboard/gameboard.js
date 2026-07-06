@@ -26,27 +26,20 @@ export default class {
   placeShip(x, y, ship) {
     if (!this.getBlock(x, y).isEmpty || !this.getBlock(x, y).shipsAllowed)
       return false;
-    const randomNumber =  Math.floor(Math.random() * 2);
+    const randomNumber = Math.floor(Math.random() * 2);
 
-    if(ship.length === 1)
-    {
+    if (ship.length === 1) {
       this.spanShip(this.alphabet.indexOf(x), y);
-      this.createGaps(x, y, this.getBlock(x, y))
+      this.createGaps(x, y, this.getBlock(x, y));
     }
-
-    const block = this.getBlock(x, y);
-    block.placeShip(ship);
 
     this.#ships.push(ship);
 
-    if (randomNumber === 1)
-    {
-      if(!this.placeVertically(x, y, ship))
+    if (randomNumber === 1) {
+      if (!this.placeVertically(x, y, ship))
         return this.placeHorizontally(x, y, ship);
-    }
-    else
-    {
-      if(!this.placeHorizontally(x, y, ship))
+    } else {
+      if (!this.placeHorizontally(x, y, ship))
         return this.placeVertically(x, y, ship);
     }
   }
@@ -82,12 +75,12 @@ export default class {
         x_coordinates === 0 &&
         this.noShipInTheWay(x_coordinates, y, ship, "right")
       )
-        this.spanShip(x_coordinates + i, y);
+        this.spanShip(x_coordinates + i, y, ship);
       else if (
         x_coordinates === this.alphabet.length - 1 &&
         this.noShipInTheWay(x_coordinates, y, ship, "left")
       )
-        this.spanShip(x_coordinates - i, y);
+        this.spanShip(x_coordinates - i, y, ship);
       else {
         if (
           x_coordinates + ship.length <= this.alphabet.length &&
@@ -95,20 +88,20 @@ export default class {
         ) {
           if (this.noShipInTheWay(x_coordinates, y, ship, "left")) {
             randomNumber === 1
-              ? this.spanShip(x_coordinates + i, y)
-              : this.spanShip(x_coordinates - i, y);
+              ? this.spanShip(x_coordinates + i, y, ship)
+              : this.spanShip(x_coordinates - i, y, ship);
             continue;
           }
-          this.spanShip(x_coordinates + i, y);
+          this.spanShip(x_coordinates + i, y, ship);
         } else if (this.noShipInTheWay(x_coordinates, y, ship, "left"))
-          this.spanShip(x_coordinates - i, y);
+          this.spanShip(x_coordinates - i, y, ship);
         else return false;
       }
     }
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
-      return true;
+    return true;
   }
 
   placeVertically(x, y, ship) {
@@ -116,12 +109,12 @@ export default class {
     const x_coordinates = this.alphabet.indexOf(x);
     for (let i = 0; i < ship.length; i++) {
       if (y === 1 && this.noShipInTheWay(x_coordinates, y, ship, "bottom"))
-        this.spanShip(x_coordinates, y + i);
+        this.spanShip(x_coordinates, y + i, ship);
       else if (
         y === this.alphabet.length &&
         this.noShipInTheWay(x_coordinates, y, ship, "top")
       )
-        this.spanShip(x_coordinates, y - i);
+        this.spanShip(x_coordinates, y - i, ship);
       else {
         if (
           y + ship.length <= this.alphabet.length + 1 &&
@@ -129,25 +122,25 @@ export default class {
         ) {
           if (this.noShipInTheWay(x_coordinates, y, ship, "top")) {
             randomNumber === 1
-              ? this.spanShip(x_coordinates, y + i)
-              : this.spanShip(x_coordinates, y - i);
+              ? this.spanShip(x_coordinates, y + i, ship)
+              : this.spanShip(x_coordinates, y - i, ship);
             continue;
           }
-          this.spanShip(x_coordinates, y + i);
+          this.spanShip(x_coordinates, y + i, ship);
         } else if (this.noShipInTheWay(x_coordinates, y, ship, "top"))
-          this.spanShip(x_coordinates, y - i);
+          this.spanShip(x_coordinates, y - i, ship);
         else return false;
       }
     }
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
-      return true;
+    return true;
   }
 
-  spanShip(x, y) {
+  spanShip(x, y, ship) {
     const block = this.getBlock(this.alphabet[x], y);
-    block.isEmpty = false;
+    block.placeShip(ship);
     this.filledBlocks.push(block);
   }
 
