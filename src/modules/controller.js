@@ -9,6 +9,22 @@ class Controller {
     this.gameboard = this.model.player.gameboard;
     this.gameboard.randomPopulate();
 
+    this.view.bindRandomize(() => this.handleRandomize());
+
+    this.gameboard.filledBlocks.forEach((block) => {
+      this.view.render(block);
+      block.grayBlocks.forEach((block) => this.view.render(block));
+    });
+  }
+
+  handleRandomize() {
+    this.gameboard.reset();
+    this.view.resetGrid();
+    this.gameboard.randomPopulate();
+    this.renderGameBoard();
+  }
+
+  renderGameBoard() {
     this.gameboard.filledBlocks.forEach((block) => {
       this.view.render(block);
       block.grayBlocks.forEach((block) => this.view.render(block));

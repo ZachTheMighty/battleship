@@ -68,4 +68,14 @@ export default class {
     }
     blockDiv.classList.add("filled-block");
   }
+
+  resetGrid() {
+    this.grid.childNodes.forEach((node) =>
+      node.classList.remove("filled-block"),
+    );
+  }
+
+  bindRandomize(handler) {
+    this.randomizeButton.addEventListener("click", handler);
+  }
 }

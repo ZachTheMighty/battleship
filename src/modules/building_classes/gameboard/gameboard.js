@@ -35,6 +35,12 @@ export default class {
     }
   }
 
+  reset() {
+    this.grid = this.generateGrid();
+    this.filledBlocks = [];
+    this.missedAttacks = [];
+  }
+
   placeShip(x, y, ship) {
     if (!this.getBlock(x, y).isEmpty || !this.getBlock(x, y).shipsAllowed)
       return false;
