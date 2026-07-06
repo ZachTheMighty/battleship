@@ -43,10 +43,15 @@ export default class {
       this.getBlock(this.alphabet[this.alphabet.indexOf(x) + 1], y),
       this.getBlock(this.alphabet[this.alphabet.indexOf(x) - 1], y),
     ];
-    noShipsBlocks.forEach((noShipBlock) => {
-      noShipBlock.shipsAllowed = false;
-      block.grayBlocks.push(noShipBlock);
-    });
+
+    for (let i = 0; i < noShipsBlocks.length; i++) {
+      try {
+        noShipsBlocks[i].shipsAllowed = false;
+        block.grayBlocks.push(noShipsBlocks[i]);
+      } catch (error) {
+        continue;
+      }
+    }
   }
 
   receiveAttack(x, y) {
