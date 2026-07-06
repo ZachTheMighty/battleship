@@ -61,7 +61,7 @@ export default class {
         x_coordinates === 0 &&
         this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y)
           .shipsAllowed &&
-        this.getBlock(this.alphabet[x_coordinates - ship.length + 1], y).isEmpty
+        this.getBlock(this.alphabet[x_coordinates + ship.length - 1], y).isEmpty
       ) {
         const block = this.getBlock(this.alphabet[x_coordinates + i], y);
         block.isEmpty = false;
