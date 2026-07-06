@@ -26,6 +26,7 @@ export default class {
   placeShip(x, y, ship) {
     if (!this.getBlock(x, y).isEmpty || !this.getBlock(x, y).shipsAllowed)
       return false;
+    const randomNumber =  Math.floor(Math.random() * 2);
 
     if(ship.length === 1)
     {
@@ -38,7 +39,16 @@ export default class {
 
     this.#ships.push(ship);
 
-    this.placeVertically(x, y, ship);
+    if (randomNumber === 1)
+    {
+      if(!this.placeVertically(x, y, ship))
+        return this.placeHorizontally(x, y, ship);
+    }
+    else
+    {
+      if(!this.placeHorizontally(x, y, ship))
+        return this.placeVertically(x, y, ship);
+    }
   }
 
   createGaps(x, y, block) {
@@ -98,6 +108,7 @@ export default class {
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
+      return true;
   }
 
   placeVertically(x, y, ship) {
@@ -131,6 +142,7 @@ export default class {
     this.filledBlocks
       .filter((block) => block.grayBlocks.length === 0)
       .forEach((block) => this.createGaps(block.x, block.y, block));
+      return true;
   }
 
   spanShip(x, y) {
