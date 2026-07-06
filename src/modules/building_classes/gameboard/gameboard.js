@@ -1,4 +1,5 @@
 import Block from "./block.js";
+import Ship from "../ship/ship.js";
 
 export default class {
   #ships = [];
@@ -21,6 +22,17 @@ export default class {
   getBlock(x, y) {
     const block = this.grid.find((block) => block.x === x && block.y === y);
     return block ? block : "Invalid coordinates";
+  }
+
+  randomPopulate() {
+    while (this.filledBlocks.length < 20) {
+      const x = this.alphabet[Math.floor(Math.random() * 10)];
+      const y = Math.floor(Math.random() * 10) + 1;
+      const shipLength = Math.floor(Math.random() * 4) + 1;
+      if (this.filledBlocks.length + shipLength > 20) continue;
+
+      this.placeShip(x, y, new Ship(shipLength));
+    }
   }
 
   placeShip(x, y, ship) {
