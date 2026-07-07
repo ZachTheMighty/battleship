@@ -10,6 +10,7 @@ class BotController {
 
     this.bot = this.model.player;
     this.gameboard = this.bot.gameboard;
+    this.gameboard.randomPopulate();
 
     this.view.bindPlayButton(() => this.handlePlayGame());
   }
