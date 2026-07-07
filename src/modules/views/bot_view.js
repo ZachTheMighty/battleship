@@ -1,5 +1,7 @@
 import createGrid from "./create_grid.js";
 
+import createCross from "./cross.js";
+
 export default class {
   constructor() {
     this.app = document.createElement("div");
@@ -29,30 +31,7 @@ export default class {
       blockDiv.appendChild(dot);
     } else {
       blockDiv.classList.add("hit-block");
-
-      const svgNS = "http://www.w3.org/2000/svg";
-      const svg = document.createElementNS(svgNS, "svg");
-      svg.setAttribute("viewBox", "0 0 35 35");
-
-      const line1 = document.createElementNS(svgNS, "line");
-      const line2 = document.createElementNS(svgNS, "line");
-
-      line1.setAttribute("x1", "0");
-      line1.setAttribute("y1", "35");
-      line1.setAttribute("x2", "35");
-      line1.setAttribute("y2", "0");
-      line1.setAttribute("stroke", "red");
-      line1.setAttribute("stroke-width", "2");
-
-      line2.setAttribute("x1", "0");
-      line2.setAttribute("y1", "0");
-      line2.setAttribute("x2", "35");
-      line2.setAttribute("y2", "35");
-      line2.setAttribute("stroke", "red");
-      line2.setAttribute("stroke-width", "2");
-
-      svg.append(line1, line2);
-      blockDiv.append(svg);
+      blockDiv.append(createCross());
     }
     blockDiv.style.pointerEvents = "none";
   }
