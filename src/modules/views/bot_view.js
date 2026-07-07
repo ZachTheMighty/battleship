@@ -28,6 +28,7 @@ export default class {
       dot.classList.add("dot");
       blockDiv.appendChild(dot);
     }
+    blockDiv.style.pointerEvents = "none";
   }
 
   bindPlayButton(handler) {
