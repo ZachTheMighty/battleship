@@ -23,7 +23,7 @@ class BotController {
   attackBlock(node) {
     const x = node.classList[1];
     const y = node.classList[2];
-    const blockObject = this.gameboard.getBlock(x, y);
+    const blockObject = this.gameboard.getBlock(x, +y);
 
     this.gameboard.receiveAttack(x, +y);
   }
