@@ -16,7 +16,7 @@ class BotController {
 
   handlePlayGame() {
     this.grid.childNodes.forEach((node) => {
-      node.addEventListener("click");
+      node.addEventListener("click", (node) => this.attackBlock(node));
     });
   }
 
