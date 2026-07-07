@@ -20,7 +20,7 @@ export default class {
     this.app.append(alphabetDiv, wrapper, this.randomizeDiv);
     document.body.append(this.app);
   }
-  render(blockObject) {
+  renderGameboard(blockObject) {
     const blockDiv = Array.from(this.grid.childNodes).find(
       (block) =>
         block.classList.contains(blockObject.x) &&

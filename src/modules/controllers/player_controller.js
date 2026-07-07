@@ -12,8 +12,8 @@ class PlayerController {
     this.view.bindRandomize(() => this.handleRandomize());
 
     this.gameboard.filledBlocks.forEach((block) => {
-      this.view.render(block);
-      block.grayBlocks.forEach((block) => this.view.render(block));
+      this.view.renderGameboard(block);
+      block.grayBlocks.forEach((block) => this.view.renderGameBoard(block));
     });
   }
 
@@ -21,13 +21,13 @@ class PlayerController {
     this.gameboard.reset();
     this.view.resetGrid();
     this.gameboard.randomPopulate();
-    this.renderGameBoard();
+    this.renderGameboard();
   }
 
   renderGameBoard() {
     this.gameboard.filledBlocks.forEach((block) => {
-      this.view.render(block);
-      block.grayBlocks.forEach((block) => this.view.render(block));
+      this.view.renderGameboard(block);
+      block.grayBlocks.forEach((block) => this.view.renderGameboard(block));
     });
   }
 }
