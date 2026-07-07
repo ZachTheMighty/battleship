@@ -27,7 +27,7 @@ class BotController {
 
     this.gameboard.receiveAttack(x, +y);
 
-    this.view.render(blockObject);
+    this.view.render(blockObject, node);
   }
 }
 

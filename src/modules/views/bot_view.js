@@ -21,12 +21,7 @@ export default class {
     document.body.append(this.playDiv, this.app);
   }
 
-  render(blockObject) {
-    const blockDiv = Array.from(this.grid.childNodes).find(
-      (block) =>
-        block.classList.contains(blockObject.x) &&
-        block.classList.contains(blockObject.y),
-    );
+  render(blockObject, blockDiv) {
     if (blockObject.isEmpty) {
       blockDiv.classList.add("empty-block");
       const dot = document.createElement("div");
