@@ -20,4 +20,8 @@ export default class {
     this.app.append(alphabetDiv, wrapper);
     document.body.append(this.playDiv, this.app);
   }
+
+  bindPlayButton(handler) {
+    this.playButton.addEventListener("click", handler);
+  }
 }

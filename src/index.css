@@ -52,6 +52,14 @@ body {
   outline: 1px solid black;
 }
 
+.computer .block:hover {
+  background-color: #d6d3d3;
+}
+
+.computer .block:active {
+  background-color: white;
+}
+
 .filled-block {
   outline: 2px solid blue;
 }
