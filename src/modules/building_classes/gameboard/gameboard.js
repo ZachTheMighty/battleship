@@ -47,7 +47,7 @@ export default class {
     const randomNumber = Math.floor(Math.random() * 2);
 
     if (ship.length === 1) {
-      this.spanShip(this.alphabet.indexOf(x), y);
+      this.spanShip(this.alphabet.indexOf(x), y, ship);
       this.createGaps(x, y, this.getBlock(x, y));
     }
 
