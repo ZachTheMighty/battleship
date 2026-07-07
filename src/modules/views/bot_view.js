@@ -34,6 +34,7 @@ export default class {
   bindPlayButton(handler) {
     this.playButton.addEventListener("click", () => {
       handler();
+      this.app.classList.add("game-started");
       this.playButton.remove();
     });
   }

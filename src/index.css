@@ -54,6 +54,15 @@ body {
   height: 35px;
   outline: 1px solid black;
 }
+.computer {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.game-started {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .computer .block:hover {
   background-color: #d6d3d3;
