@@ -21,6 +21,10 @@ class PlayerController {
     this.gameboard.reset();
     this.view.resetGrid();
     this.gameboard.randomPopulate();
+    this.gameboard.filledBlocks.forEach((block) => {
+      this.view.renderGameboard(block);
+      block.grayBlocks.forEach((block) => this.view.renderGameboard(block));
+    });
   }
 }
 

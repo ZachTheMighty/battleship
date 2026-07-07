@@ -179,6 +179,7 @@ export default class {
   receiveAttack(x, y) {
     const block = this.getBlock(x, y);
     block.isEmpty ? this.missedAttacks.push(block) : block.ship.hit();
+    block.hasBeenHit = true;
   }
 
   isAllSunk() {

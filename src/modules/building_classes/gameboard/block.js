@@ -5,6 +5,7 @@ export default class {
     this.isEmpty = true;
     this.shipsAllowed = true;
     this.grayBlocks = [];
+    this.hasBeenHit = false;
   }
 
   placeShip(ship) {

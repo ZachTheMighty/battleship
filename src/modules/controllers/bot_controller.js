@@ -1,23 +1,29 @@
-import PlayerController from "./player_controller.js";
-
 import BotModel from "../models/bot_model.js";
 import BotView from "../views/bot_view.js";
 
-class BotController {
-  constructor(model, view) {
-    this.model = model;
-    this.view = view;
+import PlayerController from "./player_controller.js";
 
-    this.bot = this.model.player;
+class BotController {
+  constructor(playerController, botModel, botView) {
+    this.botModel = botModel;
+    this.botView = botView;
+
+    this.bot = this.botModel.player;
     this.gameboard = this.bot.gameboard;
     this.gameboard.randomPopulate();
 
-    this.view.bindPlayButton(() => this.handlePlayGame());
+    this.botView.bindPlayButton(() => this.handlePlayGame());
+
+    this.playerView = playerController.view;
+    this.playerModel = playerController.model;
   }
 
   handlePlayGame() {
-    this.view.grid.childNodes.forEach((node) => {
-      node.addEventListener("click", () => this.attackBlock(node));
+    this.botView.grid.childNodes.forEach((node) => {
+      node.addEventListener("click", () => {
+        this.attackBlock(node);
+        this.makeMove();
+      });
     });
   }
 
@@ -28,8 +34,25 @@ class BotController {
 
     this.gameboard.receiveAttack(x, +y);
 
-    this.view.renderBlock(blockObject, node);
+    this.botView.renderBlock(blockObject, node);
+    // if(!blockObject.isEmpty)
+  }
+
+  makeMove() {
+    const playerGameboard = this.playerModel.player.gameboard;
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    const x = alphabet[Math.floor(Math.random() * 10)];
+    const y = Math.floor(Math.random() * 10) + 1;
+    const block = playerGameboard.getBlock(x, y);
+
+    if (block.hasBeenHit) return this.makeMove();
+    this.playerModel.player.gameboard.receiveAttack(x, y);
+    this.playerView.renderBlock(block);
   }
 }
 
-export default new BotController(new BotModel(), new BotView());
+export default new BotController(
+  PlayerController,
+  new BotModel(),
+  new BotView(),
+);
