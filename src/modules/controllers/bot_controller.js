@@ -35,7 +35,6 @@ class BotController {
     this.gameboard.receiveAttack(x, +y);
 
     this.botView.renderBlock(blockObject, node);
-    // if(!blockObject.isEmpty)
   }
 
   makeMove() {
