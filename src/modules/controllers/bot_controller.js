@@ -19,15 +19,18 @@ class BotController {
   }
 
   handlePlayGame() {
+    this.botView.app.classList.remove("disable-interact");
+    this.playerView.app.classList.add("disable-interact");
+
     this.botView.grid.childNodes.forEach((node) => {
       node.addEventListener("click", () => {
-        this.attackBlock(node);
+        this.receiveAttack(node);
         this.makeMove();
       });
     });
   }
 
-  attackBlock(node) {
+  receiveAttack(node) {
     const x = node.classList[1];
     const y = node.classList[2];
     const blockObject = this.gameboard.getBlock(x, +y);
@@ -39,14 +42,17 @@ class BotController {
 
   makeMove() {
     const playerGameboard = this.playerModel.player.gameboard;
-    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    const x = alphabet[Math.floor(Math.random() * 10)];
-    const y = Math.floor(Math.random() * 10) + 1;
-    const block = playerGameboard.getBlock(x, y);
+    let uniqueBlocks, block;
 
-    if (block.hasBeenHit) return this.makeMove();
-    this.playerModel.player.gameboard.receiveAttack(x, y);
-    this.playerView.renderBlock(block);
+    do {
+      uniqueBlocks = playerGameboard.grid.filter((block) => !block.hasBeenHit);
+      block = uniqueBlocks[Math.floor(Math.random() * uniqueBlocks.length)];
+
+      if (!block) return;
+
+      this.playerModel.player.gameboard.receiveAttack(block.x, block.y);
+      this.playerView.renderBlock(block);
+    } while (playerGameboard.filledBlocks.includes(block));
   }
 }
 

@@ -6,6 +6,7 @@ export default class {
   constructor() {
     this.app = document.createElement("div");
     this.app.classList.add("computer");
+    this.app.classList.add("disable-interact");
 
     const { alphabetDiv, wrapper } = createGrid("bot-grid");
     this.grid = wrapper.childNodes[1];
