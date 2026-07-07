@@ -83,3 +83,25 @@ body {
   color: blue;
   border-radius: 5px;
 }
+
+.play-div {
+  align-self: center;
+  width: 200px;
+  display: flex;
+}
+
+.play-button {
+  font-size: 2rem;
+  flex: 1;
+  background-color: white;
+  border: 0;
+  font-weight: 500;
+}
+
+.play-button:hover {
+  color: blue;
+}
+
+.play-button:active {
+  color: gray;
+}
