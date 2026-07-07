@@ -21,6 +21,20 @@ export default class {
     document.body.append(this.playDiv, this.app);
   }
 
+  render(blockObject) {
+    const blockDiv = Array.from(this.grid.childNodes).find(
+      (block) =>
+        block.classList.contains(blockObject.x) &&
+        block.classList.contains(blockObject.y),
+    );
+    if (blockObject.isEmpty) {
+      blockDiv.classList.add("empty-block");
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      blockDiv.appendChild(dot);
+    }
+  }
+
   bindPlayButton(handler) {
     this.playButton.addEventListener("click", () => {
       handler();

@@ -26,6 +26,8 @@ class BotController {
     const blockObject = this.gameboard.getBlock(x, +y);
 
     this.gameboard.receiveAttack(x, +y);
+
+    this.view.render(blockObject);
   }
 }
 
