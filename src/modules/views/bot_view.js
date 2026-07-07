@@ -23,7 +23,7 @@ export default class {
 
   bindPlayButton(handler) {
     this.playButton.addEventListener("click", () => {
-      handler;
+      handler();
       this.playButton.remove();
     });
   }

@@ -15,8 +15,8 @@ class BotController {
   }
 
   handlePlayGame() {
-    this.grid.childNodes.forEach((node) => {
-      node.addEventListener("click", (node) => this.attackBlock(node));
+    this.view.grid.childNodes.forEach((node) => {
+      node.addEventListener("click", () => this.attackBlock(node));
     });
   }
 
@@ -25,9 +25,7 @@ class BotController {
     const y = node.classList[2];
     const blockObject = this.gameboard.getBlock(x, y);
 
-    this.gameboard.receiveAttack(x, y);
-
-    this.view.render(blockObject);
+    this.gameboard.receiveAttack(x, +y);
   }
 }
 
