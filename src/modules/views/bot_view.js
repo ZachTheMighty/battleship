@@ -23,7 +23,7 @@ export default class {
     document.body.append(this.playDiv, this.app);
   }
 
-  render(blockObject, blockDiv) {
+  renderBlock(blockObject, blockDiv) {
     if (blockObject.isEmpty) {
       blockDiv.classList.add("empty-block");
       const dot = document.createElement("div");
