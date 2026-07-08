@@ -1,4 +1,4 @@
-import cross from "./cross.svg";
+import cross from "../../assets/cross.svg";
 
 export default function () {
   const img = document.createElement("img");
