@@ -25,7 +25,7 @@ class BotController {
 
     this.botView.grid.childNodes.forEach((node) => {
       node.addEventListener("click", () => {
-        this.receiveAttack(node);
+        if (this.receiveAttack(node)) return;
         this.makeMove();
       });
     });
@@ -37,8 +37,10 @@ class BotController {
     const blockObject = this.botGameboard.getBlock(x, +y);
 
     this.botGameboard.receiveAttack(x, +y);
-
     this.botView.renderBlock(blockObject, node);
+
+    if (this.botGameboard.filledBlocks.includes(blockObject)) return true;
+    return false;
   }
 
   makeMove() {
