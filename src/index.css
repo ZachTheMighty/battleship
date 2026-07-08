@@ -134,5 +134,6 @@ body {
 
 .game-over {
   align-self: center;
+  text-align: center;
   font-size: 2rem;
 }

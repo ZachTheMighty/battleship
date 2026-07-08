@@ -69,7 +69,16 @@ class BotController {
     gameOverMessage.classList.add("game-over");
     gameOverMessage.textContent = `${winner} has won! wohoo`;
 
+    gameOverMessage.append(this.rematch());
     document.body.insertBefore(gameOverMessage, this.botView.app);
+  }
+
+  rematch() {
+    const rematch = document.createElement("div");
+    rematch.classList.add("rematch");
+    rematch.textContent = "Rematch";
+
+    return rematch;
   }
 }
 
