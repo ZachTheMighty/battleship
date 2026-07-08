@@ -27,6 +27,11 @@ class BotController {
       node.addEventListener("click", () => {
         if (this.receiveAttack(node)) return;
         this.makeMove();
+
+        if (this.botGameboard.isAllSunk())
+          this.gameOver(this.playerModel.player.name);
+        if (this.playerGameboard.isAllSunk())
+          this.gameOver(this.botModel.player.name);
       });
     });
   }
@@ -52,11 +57,19 @@ class BotController {
       );
       block = uniqueBlocks[Math.floor(Math.random() * uniqueBlocks.length)];
 
-      if (!block) return;
-
       this.playerModel.player.gameboard.receiveAttack(block.x, block.y);
       this.playerView.renderBlock(block);
     } while (this.playerGameboard.filledBlocks.includes(block));
+  }
+
+  gameOver(winner) {
+    this.botView.app.classList.add("disable-interact");
+
+    const gameOverMessage = document.createElement("div");
+    gameOverMessage.classList.add("game-over");
+    gameOverMessage.textContent = `${winner} has won! wohoo`;
+
+    document.body.insertBefore(gameOverMessage, this.botView.app);
   }
 }
 

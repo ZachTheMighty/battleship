@@ -136,3 +136,8 @@ body {
 .play-button:active {
   color: gray;
 }
+
+.game-over {
+  align-self: center;
+  font-size: 2rem;
+}
