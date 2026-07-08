@@ -16,6 +16,7 @@ class BotController {
 
     this.playerView = playerController.view;
     this.playerModel = playerController.model;
+    this.playerGameboard = this.playerModel.player.gameboard;
   }
 
   handlePlayGame() {
@@ -41,18 +42,19 @@ class BotController {
   }
 
   makeMove() {
-    const playerGameboard = this.playerModel.player.gameboard;
     let uniqueBlocks, block;
 
     do {
-      uniqueBlocks = playerGameboard.grid.filter((block) => !block.hasBeenHit);
+      uniqueBlocks = this.playerGameboard.grid.filter(
+        (block) => !block.hasBeenHit,
+      );
       block = uniqueBlocks[Math.floor(Math.random() * uniqueBlocks.length)];
 
       if (!block) return;
 
       this.playerModel.player.gameboard.receiveAttack(block.x, block.y);
       this.playerView.renderBlock(block);
-    } while (playerGameboard.filledBlocks.includes(block));
+    } while (this.playerGameboard.filledBlocks.includes(block));
   }
 }
 
