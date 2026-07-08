@@ -78,6 +78,10 @@ class BotController {
     rematch.classList.add("rematch");
     rematch.textContent = "Rematch";
 
+    rematch.addEventListener("click", () => {
+      window.location.reload();
+    });
+
     return rematch;
   }
 }
