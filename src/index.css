@@ -124,17 +124,21 @@ body {
   font-weight: 500;
 }
 
-.play:hover {
+.play:hover,
+.rematch:hover {
   color: blue;
 }
 
-.play:active {
+.play:active,
+.rematch:active {
   color: gray;
 }
 
 .game-over {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   align-self: center;
-  text-align: center;
   font-size: 2rem;
 }
 
