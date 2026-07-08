@@ -25,7 +25,7 @@ export default class {
   }
 
   randomPopulate() {
-    while (this.filledBlocks.length < 20) {
+    while (this.filledBlocks.length != 20) {
       const x = this.alphabet[Math.floor(Math.random() * 10)];
       const y = Math.floor(Math.random() * 10) + 1;
       const shipLength = Math.floor(Math.random() * 4) + 1;
