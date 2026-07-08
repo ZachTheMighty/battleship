@@ -25,8 +25,7 @@ class BotController {
 
     this.botView.grid.childNodes.forEach((node) => {
       node.addEventListener("click", () => {
-        if (this.receiveAttack(node)) return;
-        this.makeMove();
+        if (!this.receiveAttack(node)) this.makeMove();
 
         if (this.botGameboard.isAllSunk())
           this.gameOver(this.playerModel.player.name);
