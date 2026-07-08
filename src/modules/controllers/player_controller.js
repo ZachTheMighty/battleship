@@ -28,4 +28,4 @@ class PlayerController {
   }
 }
 
-export default new PlayerController(new PlayerModel("idk"), new PlayerView());
+export default new PlayerController(new PlayerModel(), new PlayerView());
