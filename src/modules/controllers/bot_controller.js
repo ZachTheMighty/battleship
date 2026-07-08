@@ -9,8 +9,8 @@ class BotController {
     this.botView = botView;
 
     this.bot = this.botModel.player;
-    this.gameboard = this.bot.gameboard;
-    this.gameboard.randomPopulate();
+    this.botGameboard = this.bot.gameboard;
+    this.botGameboard.randomPopulate();
 
     this.botView.bindPlayButton(() => this.handlePlayGame());
 
@@ -33,9 +33,9 @@ class BotController {
   receiveAttack(node) {
     const x = node.classList[1];
     const y = node.classList[2];
-    const blockObject = this.gameboard.getBlock(x, +y);
+    const blockObject = this.botGameboard.getBlock(x, +y);
 
-    this.gameboard.receiveAttack(x, +y);
+    this.botGameboard.receiveAttack(x, +y);
 
     this.botView.renderBlock(blockObject, node);
   }
