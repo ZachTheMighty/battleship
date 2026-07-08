@@ -2,7 +2,6 @@ import Block from "./block.js";
 import Ship from "../ship/ship.js";
 
 export default class {
-  #ships = [];
   constructor() {
     this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     this.grid = this.generateGrid();
@@ -50,8 +49,6 @@ export default class {
       this.spanShip(this.alphabet.indexOf(x), y, ship);
       this.createGaps(x, y, this.getBlock(x, y));
     }
-
-    this.#ships.push(ship);
 
     if (randomNumber === 1) {
       if (!this.placeVertically(x, y, ship))
@@ -183,6 +180,6 @@ export default class {
   }
 
   isAllSunk() {
-    return this.#ships.some((ship) => !ship.isSunk) ? false : true;
+    return this.filledBlocks.some((block) => !block.ship.isSunk) ? false : true;
   }
 }
