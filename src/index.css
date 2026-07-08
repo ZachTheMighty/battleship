@@ -117,11 +117,8 @@ body {
   border-radius: 5px;
 }
 
-.play-div {
+.play {
   align-self: center;
-}
-
-.play-button {
   font-size: 2rem;
   flex: 1;
   background-color: white;
@@ -129,11 +126,11 @@ body {
   font-weight: 500;
 }
 
-.play-button:hover {
+.play:hover {
   color: blue;
 }
 
-.play-button:active {
+.play:active {
   color: gray;
 }
 

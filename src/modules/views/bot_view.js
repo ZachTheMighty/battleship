@@ -11,17 +11,12 @@ export default class {
     const { alphabetDiv, wrapper } = createGrid("bot-grid");
     this.grid = wrapper.childNodes[1];
 
-    this.playDiv = document.createElement("div");
-    this.playDiv.classList.add("play-div");
-
-    this.playButton = document.createElement("button");
-    this.playButton.classList.add("play-button");
-    this.playButton.textContent = "Play";
-
-    this.playDiv.append(this.playButton);
+    this.play = document.createElement("div");
+    this.play.classList.add("play");
+    this.play.textContent = "Play";
 
     this.app.append(alphabetDiv, wrapper);
-    document.body.append(this.playDiv, this.app);
+    document.body.append(this.play, this.app);
   }
 
   renderBlock(blockObject, blockDiv) {
@@ -38,10 +33,10 @@ export default class {
   }
 
   bindPlayButton(handler) {
-    this.playButton.addEventListener("click", () => {
+    this.play.addEventListener("click", () => {
       handler();
       this.app.classList.add("game-started");
-      this.playButton.remove();
+      this.play.remove();
     });
   }
 }
