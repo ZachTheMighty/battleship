@@ -20,7 +20,6 @@ body {
   padding: 0;
   display: flex;
   justify-content: space-around;
-  margin-top: 5rem;
 }
 
 .player-grid,
@@ -120,7 +119,6 @@ body {
 .play {
   align-self: center;
   font-size: 2rem;
-  flex: 1;
   background-color: white;
   border: 0;
   font-weight: 500;
