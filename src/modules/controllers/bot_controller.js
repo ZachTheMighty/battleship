@@ -79,6 +79,7 @@ class BotController {
 
     rematch.addEventListener("click", () => {
       window.location.reload();
+      localStorage.setItem("rematch", "true");
     });
 
     return rematch;
