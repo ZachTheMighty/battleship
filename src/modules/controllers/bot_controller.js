@@ -43,6 +43,8 @@ class BotController {
     this.botGameboard.receiveAttack(x, +y);
     this.botView.renderBlock(blockObject, node);
 
+    this.renderSunk(blockObject, this.botGameboard, this.botView.grid);
+
     if (this.botGameboard.filledBlocks.includes(blockObject)) return true;
     return false;
   }
@@ -58,6 +60,8 @@ class BotController {
 
       this.playerModel.player.gameboard.receiveAttack(block.x, block.y);
       this.playerView.renderBlock(block);
+
+      this.renderSunk(block, this.playerGameboard, this.playerView.grid);
     } while (this.playerGameboard.filledBlocks.includes(block));
   }
 
@@ -83,6 +87,24 @@ class BotController {
     });
 
     return rematch;
+  }
+
+  renderSunk(block, gameboard, gridDOM) {
+    try {
+      if (block.ship.isSunk) {
+        gameboard.filledBlocks
+          .filter((filledBlock) => filledBlock.ship === block.ship)
+          .forEach((filledBlock) => {
+            Array.from(gridDOM.childNodes)
+              .find(
+                (block) =>
+                  block.classList.contains(filledBlock.x) &&
+                  block.classList.contains(filledBlock.y),
+              )
+              .classList.add("sunk-ship");
+          });
+      }
+    } catch (error) {}
   }
 }
 

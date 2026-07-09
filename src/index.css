@@ -77,8 +77,11 @@ body {
 }
 
 .hit-block {
-  outline: 2px solid red;
   color: red;
+}
+
+.sunk-ship {
+  outline: 2px solid red;
 }
 
 .dot {
