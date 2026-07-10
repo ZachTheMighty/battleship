@@ -73,7 +73,9 @@ class BotController {
     gameOverMessage.textContent = `${winner} has won! wohoo`;
 
     gameOverMessage.append(this.rematch());
-    document.body.insertBefore(gameOverMessage, this.botView.app);
+    document
+      .querySelector("main")
+      .insertBefore(gameOverMessage, this.botView.app);
   }
 
   rematch() {

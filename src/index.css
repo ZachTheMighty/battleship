@@ -19,11 +19,16 @@ body {
     sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 main {
   display: flex;
   justify-content: space-around;
+  gap: 32px;
 }
 
 .player-grid,
