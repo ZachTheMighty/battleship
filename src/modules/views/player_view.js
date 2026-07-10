@@ -19,7 +19,7 @@ export default class {
     this.randomizeDiv.append(this.randomizeButton);
 
     this.app.append(alphabetDiv, wrapper, this.randomizeDiv);
-    document.body.append(this.app);
+    document.querySelector("main").append(this.app);
   }
 
   renderBlock(blockObject) {

@@ -16,7 +16,7 @@ export default class {
     this.play.textContent = "Play";
 
     this.app.append(alphabetDiv, wrapper);
-    document.body.append(this.play, this.app);
+    document.querySelector("main").append(this.play, this.app);
   }
 
   renderBlock(blockObject, blockDiv) {
