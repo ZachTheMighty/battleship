@@ -1,6 +1,7 @@
 import githubIcon from "../assets/github.svg";
+import packageInfo from "../../package.json";
 
-export default function (repoName) {
+function createFooter(repoName) {
   const footer = document.createElement("footer");
 
   const link = document.createElement("a");
@@ -19,3 +20,5 @@ export default function (repoName) {
 
   document.body.append(footer);
 }
+
+export default createFooter(packageInfo.name);
